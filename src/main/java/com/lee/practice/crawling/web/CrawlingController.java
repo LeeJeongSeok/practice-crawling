@@ -23,8 +23,6 @@ public class CrawlingController {
         Document document = Jsoup.connect("http://snuco.snu.ac.kr/ko/foodmenu").get();
         Elements elements = document.select("table tbody tr td");
 
-        System.out.println(elements);
-
         return "crawling";
     }
 }
