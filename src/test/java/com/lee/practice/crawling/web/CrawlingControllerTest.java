@@ -12,6 +12,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -44,9 +45,10 @@ public class CrawlingControllerTest {
 
         Document document = Jsoup.connect("http://snuco.snu.ac.kr/ko/foodmenu").get();
 
-        Elements elements = document.select("table tbody tr td.views-field views-field-field-restaurant");
+        Elements elements = document.select("table tbody tr td");
+        boolean result = elements.text().contains("학생회관식당(880-5543)");
 
-        assertThat("학생회관식당(880-5543)").isEqualTo(elements);
+        assertThat(true).isEqualTo(result);
 
     }
 
