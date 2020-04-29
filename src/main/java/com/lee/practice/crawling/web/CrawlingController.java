@@ -21,14 +21,10 @@ public class CrawlingController {
     public String crawling() throws IOException {
 
         Document document = Jsoup.connect("http://snuco.snu.ac.kr/ko/foodmenu").get();
+        Elements elements = document.select("table tbody tr td");
 
-        if (document != null) {
-            return "connect";
-        } else {
-            return "connect fail";
-        }
+        System.out.println(elements);
 
-
-
+        return "crawling";
     }
 }

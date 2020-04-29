@@ -41,20 +41,16 @@ public class CrawlingControllerTest {
     }
 
     @Test
-    public void crawling할려는_태그가_있는가() throws Exception {
+    public void crawling할려는_데이터가_있는가() throws Exception {
 
         Document document = Jsoup.connect("http://snuco.snu.ac.kr/ko/foodmenu").get();
 
         Elements elements = document.select("table tbody tr td");
         boolean result = elements.text().contains("학생회관식당(880-5543)");
 
+        System.out.println(elements);
+
         assertThat(true).isEqualTo(result);
-
-    }
-
-    @Test
-    public void 태그안에_data가_있는가() throws Exception {
-
     }
 
 }
