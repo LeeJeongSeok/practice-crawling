@@ -20,13 +20,15 @@ public class CrawlingController {
     @GetMapping("/crawling")
     public String crawling() throws IOException {
 
-        Document document = Jsoup.connect("https://www.naver.com/").get();
+        Document document = Jsoup.connect("http://snuco.snu.ac.kr/ko/foodmenu").get();
 
         if (document != null) {
             return "connect";
         } else {
             return "connect fail";
         }
+
+
 
     }
 }

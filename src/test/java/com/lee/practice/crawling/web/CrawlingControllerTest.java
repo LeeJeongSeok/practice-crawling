@@ -34,7 +34,7 @@ public class CrawlingControllerTest {
     @Test
     public void crawling할려는_웹페이지가_정상작동중인가() throws Exception {
 
-        Document document = Jsoup.connect("https://www.naver.com/").get();
+        Document document = Jsoup.connect("http://snuco.snu.ac.kr/ko/foodmenu").get();
 
         mvc.perform(get("/crawling")).andExpect(status().isOk()).andExpect(content().string("connect"));
     }
@@ -42,9 +42,11 @@ public class CrawlingControllerTest {
     @Test
     public void crawling할려는_태그가_있는가() throws Exception {
 
-        Document document = Jsoup.connect("https://www.naver.com/").get();
+        Document document = Jsoup.connect("http://snuco.snu.ac.kr/ko/foodmenu").get();
 
-        Elements elements = document.select("body");
+        Elements elements = document.select("table tbody tr td.views-field views-field-field-restaurant");
+
+        assertThat("학생회관식당(880-5543)").isEqualTo(elements);
 
     }
 
