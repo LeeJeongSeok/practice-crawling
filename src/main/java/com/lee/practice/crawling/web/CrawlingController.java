@@ -12,16 +12,8 @@ import java.io.IOException;
 @RestController
 public class CrawlingController {
 
-    @GetMapping("/")
-    public String index() {
-        return  "crawling";
-    }
-
     @GetMapping("/crawling")
     public String crawling() throws IOException {
-
-        Document document = Jsoup.connect("http://snuco.snu.ac.kr/ko/foodmenu").get();
-        Elements elements = document.select("table tbody tr td");
 
         return "crawling";
     }

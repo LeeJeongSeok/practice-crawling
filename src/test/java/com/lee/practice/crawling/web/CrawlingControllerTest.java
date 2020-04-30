@@ -30,42 +30,6 @@ public class CrawlingControllerTest {
 
         String text = "crawling";
 
-        mvc.perform(get("/")).andExpect(status().isOk()).andExpect(content().string(text));
+        mvc.perform(get("/crawling")).andExpect(status().isOk()).andExpect(content().string(text));
     }
-
-    @Test
-    public void crawling할려는_웹페이지가_정상작동중인가() throws Exception {
-
-        Document document = Jsoup.connect("http://snuco.snu.ac.kr/ko/foodmenu").get();
-
-        mvc.perform(get("/crawling")).andExpect(status().isOk()).andExpect(content().string("crawling"));
-    }
-
-    @Test
-    public void crawling할려는_데이터가_있는가() throws Exception {
-
-        Document document = Jsoup.connect("http://snuco.snu.ac.kr/ko/foodmenu").get();
-        Elements elements = document.select("table tbody tr td");
-
-        boolean result = elements.text().contains("학생회관식당(880-5543)");
-
-        System.out.println(elements);
-
-        assertThat(true).isEqualTo(result);
-    }
-
-    @Test
-    public void 첫번쨰_데이터_가져오기() throws Exception {
-
-        Document document = Jsoup.connect("http://snuco.snu.ac.kr/ko/foodmenu").get();
-        Elements elements = document.select("table tbody tr td");
-
-        String res = elements.get(0).text();
-        String breakfast = elements.get(1).text();
-
-        System.out.println(res);
-        System.out.println(breakfast);
-
-    }
-
 }
