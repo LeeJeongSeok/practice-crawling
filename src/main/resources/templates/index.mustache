@@ -6,5 +6,25 @@
 </head>
 <body>
     <h1> 학식 정보 크롤링 Web Service</h1>
+
+    <table>
+        {{#RestaurantMenu}}
+        <tr>
+            <td>
+                {{restaurant}}
+            </td>
+            <td>
+                {{breakfast}}
+            </td>
+            <td>
+                {{lunch}}
+            </td>
+            <td>
+                {{dinner}}
+            </td>
+        </tr>
+        {{/RestaurantMenu}}
+    </table>
+
 </body>
 </html>
