@@ -1,13 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-    <h1> 학식 정보 크롤링 Web Service</h1>
+{{>layout/header}}
+    <h1> 학식 정보 Crawling Web Service</h1>
 
-    <table>
+    <table class = "table table-horizontal table-bordered">
+        <thead class = "thead-strong">
+        <tr>
+            <th>식당</th>
+            <th>아침</th>
+            <th>점심</th>
+            <th>저녁</th>
+        </tr>
+        </thead>
+        <tbody>
         {{#RestaurantMenu}}
         <tr>
             <td>
@@ -24,7 +27,5 @@
             </td>
         </tr>
         {{/RestaurantMenu}}
+        </tbody>
     </table>
-
-</body>
-</html>
