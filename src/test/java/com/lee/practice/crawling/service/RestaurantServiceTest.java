@@ -21,41 +21,27 @@ public class RestaurantServiceTest {
     RestaurantService restaurantService;
 
     @Test
-    public void url_호출() throws Exception{
-        Document document = Jsoup.connect("http://snuco.snu.ac.kr/ko/foodmenu").get();
-    }
-
-    @Test
-    public void 데이터_크롤링() throws Exception {
+    public void crawling_데이터_유무_일치() throws Exception {
 
         //given
-        String res = "";
-        String bre = "";
-        String lun = "";
-        String din = "";
-
-        //when
         Document document = Jsoup.connect("http://snuco.snu.ac.kr/ko/foodmenu").get();
         Elements tdElement = document.select("table tbody tr td");
 
-        res = tdElement.get(0).text();
-        bre = tdElement.get(1).text();
-        lun = tdElement.get(2).text();
-        din = tdElement.get(3).text();
+        //when
+        Menu menu = Menu.builder()
+                .restaurant(tdElement.get(0).text())
+                .breakfast(tdElement.get(1).text())
+                .lunch(tdElement.get(2).text())
+                .dinner(tdElement.get(3).text())
+                .build();
+
 
         //then
-        assertThat("학생회관식당(880-5543)").isEqualTo(res);
-        assertThat("건새우근대된장국(#) 1,700원").isEqualTo(bre);
-        assertThat("치즈돈까스&쫄면 4,000원 마파두부(#) 1,700원 돌솥사리곰탕 3,000원").isEqualTo(lun);
-        assertThat("버섯불고기 3,500원 조갯살미역국백반(#) 1,700원").isEqualTo(din);
+        assertThat(tdElement.get(0).text()).isEqualTo(menu.getRestaurant());
+        assertThat(tdElement.get(1).text()).isEqualTo(menu.getBreakfast());
+        assertThat(tdElement.get(2).text()).isEqualTo(menu.getLunch());
+        assertThat(tdElement.get(3).text()).isEqualTo(menu.getDinner());
+
+
     }
-
-    @Test
-    public void 리스트에_쌓기() {
-
-        List<Menu> menuList = new ArrayList<>();
-
-        menuList.add(Menu.builder().build());
-    }
-
 }
