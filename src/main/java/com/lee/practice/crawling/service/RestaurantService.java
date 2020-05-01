@@ -14,7 +14,7 @@ import java.util.List;
 @Service
 public class RestaurantService {
 
-    public void crawling_data() throws Exception {
+    public List<Menu> crawling_data() throws Exception {
 
         List<Menu> menuList = new ArrayList<>();
 
@@ -35,8 +35,7 @@ public class RestaurantService {
 
         }
 
-        System.out.println(menuList.get(4));
-
+        return menuList;
     }
 
 }
