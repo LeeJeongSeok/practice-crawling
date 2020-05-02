@@ -18,8 +18,10 @@ public class CrawlingController {
     @Autowired
     RestaurantService restaurantService;
 
+
     @GetMapping("/crawling")
     public String crawling(Model model) {
+
         try {
             List<Menu> RestaurantMenu = restaurantService.crawling_data();
             model.addAttribute("RestaurantMenu", RestaurantMenu);
