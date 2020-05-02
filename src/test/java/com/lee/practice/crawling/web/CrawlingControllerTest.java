@@ -37,6 +37,6 @@ public class CrawlingControllerTest {
         String body = this.testRestTemplate.getForObject("/crawling", String.class);
 
         //then
-        assertThat(body).contains("학식 정보 크롤링 Web Service");
+        assertThat(body).contains("학식 정보 Crawling WebService");
     }
 }
