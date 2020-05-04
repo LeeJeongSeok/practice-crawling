@@ -14,14 +14,24 @@ import java.util.List;
 @Service
 public class RestaurantService {
 
-    public List<Menu> crawling_data() throws Exception {
+    Document document;
+    Elements elements;
+
+    private final String SNU = "http://snuco.snu.ac.kr/ko/foodmenu";
+
+    public List<Menu> crawling_data() {
 
         List<Menu> menuList = new ArrayList<>();
 
-        Document document = Jsoup.connect("http://snuco.snu.ac.kr/ko/foodmenu").get();
-        Elements tdElement = document.select("table tbody tr");
+        try {
+            document = Jsoup.connect(SNU).get();
+            elements = document.select("table tbody tr");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
-        for (Element content : tdElement) {
+
+        for (Element content : elements) {
             Elements tdContent = content.select("td");
 
             Menu menu = Menu.builder()

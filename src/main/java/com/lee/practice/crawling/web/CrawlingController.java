@@ -22,13 +22,10 @@ public class CrawlingController {
     @GetMapping("/crawling")
     public String crawling(Model model) {
 
-        try {
-            List<Menu> RestaurantMenu = restaurantService.crawling_data();
-            model.addAttribute("RestaurantMenu", RestaurantMenu);
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("인터넷이 연결 X");
-        }
+
+        List<Menu> RestaurantMenu = restaurantService.crawling_data();
+        model.addAttribute("RestaurantMenu", RestaurantMenu);
+
         return "index";
     }
 }
